@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#121413">
+  <meta name="description" content="Максим, Киров. Junior 1С-разработчик. Система управления сервисом, веб-проекты, музыка и видеомонтаж.">
+  <title>Максим — 1С-разработка, веб и творчество</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">К содержимому</a>
+  <div class="scroll-progress" aria-hidden="true"></div>
+  <header class="header wrap">
+    <a class="brand" href="#top" aria-label="Максим — на главную">м<span>·</span></a>
+    <nav aria-label="Основная навигация" id="navigation">
+      <a href="#projects">Проекты</a><a href="#about">Мой путь</a><a href="#creative">Вне кода</a>
+    </nav>
+    <a class="header-contact" href="#contact">На связи <span>↗</span></a>
+    <button class="menu-toggle" aria-label="Открыть меню" aria-expanded="false" aria-controls="navigation">☰</button>
+  </header>
+  <main id="main">
+    <section class="hero wrap" id="top" aria-labelledby="hero-title">
+      <div class="hero-content">
+        <p class="eyebrow"><span class="live-dot"></span> ОТКРЫТ К ПРЕДЛОЖЕНИЯМ <span class="location">КИРОВ, РОССИЯ</span></p>
+        <h1 id="hero-title">Максим<span class="accent">.</span></h1>
+        <p class="hero-heading">Разбираюсь в логике.<br>Создаю <span class="underlined">своё.</span></p>
+        <p class="hero-description">Развиваюсь в <strong>1С-разработке</strong>, проектирую систему сервиса и создаю веб-проекты. А за пределами кода — музыка и видеомонтаж.</p>
+        <div class="hero-actions"><a class="button primary" href="#projects">Смотреть проекты <span>↗</span></a><button class="text-button" data-open="profile">Для работодателя <span>↗</span></button></div>
+        <div class="hero-meta"><span><b>Junior</b>1С-разработчик</span><span><b>5 месяцев</b>опыта в 1С</span><span><b>В процессе</b>система сервиса</span></div>
+      </div>
+      <div class="hero-art" aria-label="Движущаяся объёмная композиция вокруг символа 1С" role="img">
+        <div class="art-grid"></div><canvas id="orbit" aria-hidden="true"></canvas>
+        <div class="art-center" aria-hidden="true">1С<span>МОЙ ОСНОВНОЙ ФОКУС</span></div>
+        <span class="art-tag tag-one" aria-hidden="true"><i></i> ЛОГИКА</span><span class="art-tag tag-two" aria-hidden="true">СИСТЕМЫ <span>↗</span></span>
+        <div class="art-caption" aria-hidden="true"><span>001 / DEVELOPMENT</span><span>ИДЕЯ → СИСТЕМА</span></div>
+      </div>
+      <a class="scroll-cue" href="#projects"><span>↓</span> ДАЛЬШЕ — ДЕЛА</a>
+    </section>
+    <div class="focus-strip" aria-hidden="true"><div class="wrap"><span>1С-РАЗРАБОТКА</span><i>✳</i><span>ВЕБ И ДИЗАЙН</span><i>✳</i><span>МУЗЫКА</span><i>✳</i><span>ВИДЕОМОНТАЖ</span><i>✳</i></div></div>
+    <section class="projects section wrap" id="projects" aria-labelledby="projects-title">
+      <div class="section-top"><p class="eyebrow">01 / ПОРТФОЛИО</p><span class="section-note">От идеи до работающего решения</span></div>
+      <div class="section-heading"><h2 id="projects-title">То, над чем<br>я <span class="muted">работаю.</span></h2><div class="filters" role="group" aria-label="Фильтр проектов"><button class="selected" data-filter="all" aria-pressed="true">Все <sup>4</sup></button><button data-filter="1c" aria-pressed="false">1С <sup>1</sup></button><button data-filter="web" aria-pressed="false">Веб <sup>3</sup></button></div></div>
+      <p class="sr-only" id="filter-status" role="status"></p>
+      <article class="featured project" data-category="1c">
+        <div class="featured-info"><span class="project-kicker"><span class="live-dot"></span> СЕЙЧАС В РАЗРАБОТКЕ / 1С</span><h3>Сервис.<br>Как система.</h3><p>Проектирую систему управления сервисной компанией на 1С: от обращения клиента до истории обслуживания оборудования.</p><p class="project-detail">Учебный проект, который развиваю с помощью нейросети. Подготовлены требования, архитектура и основа конфигурации.</p><div class="tags"><span>1С:Предприятие</span><span>Проектирование</span><span>Git</span></div><button class="project-link" data-open="service">Подробнее о проекте <span>↗</span></button></div>
+        <div class="service-visual"><div class="window-bar"><span><i></i><i></i><i></i></span><span>SERVICE / DEVELOPMENT</span><span>↗</span></div><div class="service-body"><div class="service-title"><span class="service-mark">С/</span><div>Управление сервисом<small>Путь к первому релизу</small></div></div><div class="service-tabs" role="tablist" aria-label="Состояние проекта"><button id="tab-now" class="active" role="tab" aria-selected="true" aria-controls="service-panel" data-stage="now">Сейчас</button><button id="tab-plan" role="tab" aria-selected="false" aria-controls="service-panel" data-stage="plan" tabindex="-1">План R1</button><button id="tab-stack" role="tab" aria-selected="false" aria-controls="service-panel" data-stage="stack" tabindex="-1">Стек</button></div><div id="service-panel" role="tabpanel" aria-labelledby="tab-now" tabindex="0"></div><div class="service-footer"><span class="live-dot"></span> Ранняя стадия разработки <span>R1</span></div></div></div>
+      </article>
+      <div class="web-grid">
+        <article class="web-project project" data-category="web"><button class="project-image wedo" data-open="wedo" aria-label="Подробнее: маркетинговое агентство"><span class="image-number">02 / WEB</span><div class="browser-frame"><div class="mini-bar"><i></i><i></i><i></i><span>marketingwedo.ru</span></div><img src="assets/wedo.jpg" alt="Главная страница маркетингового агентства НаВиду" loading="lazy"></div><span class="image-arrow">↗</span></button><div class="project-row"><h3>Маркетинговое агентство</h3><span class="small-status">ВЫПОЛНЕНО</span></div><p>Дизайн главной страницы и разработка страницы отзывов для агентства, в котором я работал.</p><div class="card-bottom"><span>Дизайн · Разработка</span><a href="https://marketingwedo.ru/" target="_blank" rel="noopener noreferrer" aria-label="Открыть сайт маркетингового агентства в новой вкладке">Сайт ↗</a></div></article>
+        <article class="web-project project" data-category="web"><button class="project-image school" data-open="school" aria-label="Подробнее: школа Перспектива"><span class="image-number">03 / WEB</span><div class="browser-frame"><div class="mini-bar"><i></i><i></i><i></i><span>perspectiveschool.ru</span></div><img src="assets/school.jpg" alt="Главная страница частной школы Перспектива в Санкт-Петербурге" loading="lazy"></div><span class="image-arrow">↗</span></button><div class="project-row"><h3>Школа «Перспектива»</h3><span class="small-status">ВЫПОЛНЕНО</span></div><p>Дизайн и разработка страниц для частной школы в Санкт-Петербурге.</p><div class="card-bottom"><span>Дизайн · Разработка страниц</span><a href="https://perspectiveschool.ru/" target="_blank" rel="noopener noreferrer" aria-label="Открыть сайт школы в новой вкладке">Сайт ↗</a></div></article>
+        <article class="web-project project wide-project" data-category="web"><button class="project-image zhiguli" data-open="zhiguli" aria-label="Подробнее: интернет-магазин Жигули"><span class="image-number">04 / WEB</span><div class="browser-frame"><div class="mini-bar"><i></i><i></i><i></i><span>max-ictu.github.io/zhiguli-kirov</span></div><img src="assets/zhiguli.jpg" alt="Текущая версия сайта автозапчастей Жигули в Кирове" loading="lazy"></div><span class="image-arrow">↗</span></button><div class="wide-info"><div class="project-row"><h3>«Жигули» — интернет-магазин</h3><span class="small-status in-progress">В РАЗРАБОТКЕ</span></div><p>Разрабатываю интернет-магазин для компании. Текущую версию можно посмотреть онлайн: каталог автозапчастей, поиск и подбор товаров.</p><div class="tags"><span>Веб-разработка</span><span>Каталог</span><span>Поиск</span></div><button class="project-link" data-open="zhiguli">Посмотреть проект <span>↗</span></button></div></article>
+      </div>
+      <a class="github-line" href="https://github.com/max-ictu" target="_blank" rel="noopener noreferrer"><span class="github-symbol" aria-hidden="true">{ }</span><span>Код, документация и история работы<small>github.com/max-ictu</small></span><span class="github-end">Мой GitHub ↗</span></a>
+    </section>
+    <section class="about section" id="about" aria-labelledby="about-title"><div class="wrap"><div class="section-top"><p class="eyebrow">02 / ЛИЧНОЕ</p><span class="section-note">Больше, чем стек технологий</span></div><div class="about-grid"><div><h2 id="about-title">У каждого<br>свой <span class="muted">путь.</span></h2><div class="about-monogram" aria-hidden="true"><span>м.</span><div>КИРОВ<br>58°36′ N · 49°40′ E</div></div></div><div class="about-copy"><p class="about-lead">Я Максим. Сейчас мой главный фокус — <span>стать сильнее в 1С-разработке.</span></p><p>До этого работал в маркетинговом агентстве, занимался дизайном и разработкой веб-страниц. Теперь развиваюсь в 1С и проектирую собственную систему сервиса с помощью нейросети.</p><p>Мне интересно создавать и технические, и творческие проекты. Поэтому здесь рядом с разработкой есть место музыке и видеомонтажу.</p><div class="timeline"><div><span class="timeline-icon">01</span><div><h3>Кадетский класс</h3><p>Обучение в школе в кадетском классе.<br>Есть удостоверение Юнармии.</p></div><span class="timeline-state">ШКОЛА</span></div><div><span class="timeline-icon">02</span><div><h3>Информационные системы</h3><p>Среднее специальное образование.</p></div><span class="timeline-state">ОБРАЗОВАНИЕ</span></div><div><span class="timeline-icon">03</span><div><h3>Срочная служба</h3><p>Бригада специального назначения.<br>Спецназ ВДВ.</p></div><span class="timeline-state">СЛУЖБА</span></div><div><span class="timeline-icon current">04</span><div><h3>Развитие в 1С</h3><p>5 месяцев опыта · Junior<br>Проектирование системы сервиса</p></div><span class="timeline-state current-text">СЕЙЧАС</span></div></div></div></div></div></section>
+    <section class="creative section wrap" id="creative" aria-labelledby="creative-title"><div class="section-top"><p class="eyebrow">03 / ВНЕ КОДА</p><span class="section-note">Другой способ создавать</span></div><div class="creative-heading"><h2 id="creative-title">Не только<br><span class="creative-accent">разработка.</span></h2><p>Когда закрываю редактор кода,<br>открываю пространство для творчества.</p></div><div class="creative-grid"><article class="creative-card music"><div class="creative-top"><span>01 / SOUND</span><span>↗</span></div><div class="sound-art" aria-hidden="true"><div class="record"><span>М<span>33⅓</span></span></div><div class="waveform"></div></div><div class="creative-bottom"><h3>Музыка</h3><p>Мои музыкальные проекты.<br>Здесь скоро появятся записи.</p><span class="soon">ПОДБОРКА ГОТОВИТСЯ</span></div></article><article class="creative-card video"><div class="creative-top"><span>02 / MOTION</span><span>↗</span></div><div class="video-art" aria-hidden="true"><div class="viewfinder"><span>REC <i></i></span><b>М<span>↗</span></b><small>CREATIVE CUT / MAXIM</small></div><div class="film-timeline"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div><div class="creative-bottom"><h3>Видеомонтаж</h3><p>Истории через кадр и ритм.<br>Работы добавлю в этот раздел позже.</p><span class="soon">ПОДБОРКА ГОТОВИТСЯ</span></div></article></div></section>
+    <section class="contact section" id="contact" aria-labelledby="contact-title"><div class="wrap"><p class="eyebrow"><span class="live-dot"></span> ИЩУ РАБОТУ / JUNIOR 1С-РАЗРАБОТЧИК</p><div class="contact-grid"><h2 id="contact-title">Давайте<br><span>знакомиться.</span></h2><div><p>Рассматриваю предложения на позицию 1С-разработчика. Напишите мне — обсудим вакансию и мои проекты.</p><div class="contact-details"><div><small>ПОЧТА</small><a href="mailto:maksim.ushakov02@mail.ru">maksim.ushakov02@mail.ru</a></div><div><small>ТЕЛЕФОН</small><a href="tel:+79536783320">+7 (953) 678-33-20</a></div></div><a class="button primary" href="mailto:maksim.ushakov02@mail.ru">Написать на почту <span>↗</span></a><div class="contact-extra"><button class="text-button" data-open="profile">Кратко обо мне <span>↗</span></button><a class="text-button" href="https://github.com/max-ictu" target="_blank" rel="noopener noreferrer">GitHub <span>↗</span></a></div></div></div><footer><a class="brand" href="#top" aria-label="Вернуться к началу">м<span>·</span></a><span>Максим · Киров · 2026</span><a href="#top">К началу ↑</a></footer></div></section>
+  </main>
+  <dialog id="details" aria-labelledby="dialog-title"><button class="dialog-close" aria-label="Закрыть подробности">✕</button><div id="dialog-content"></div></dialog>
+</body>
+</html>
