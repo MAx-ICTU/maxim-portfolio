@@ -58,8 +58,6 @@ dialog.addEventListener('click', e => { if (e.target === dialog) { const r = dia
 dialog.addEventListener('close', () => { document.body.style.overflow = ''; dialogTrigger?.focus({preventScroll:true}); });
 const progress = document.querySelector('.scroll-progress');
 function updateProgress() { const max = document.documentElement.scrollHeight - window.innerHeight; progress.style.width = `${max > 0 ? window.scrollY / max * 100 : 0}%`; }
-window.addEventListener('scroll', updateProgress, {passive:true});
-window.addEventListener('resize', updateProgress);
 const wave = document.querySelector('.waveform');
 for (let i = 0; i < 80; i++) { const bar = document.createElement('i'); bar.style.height = `${6 + Math.abs(Math.sin(i * .31) * Math.cos(i * .73)) * 42}px`; wave.appendChild(bar); }
 
@@ -119,3 +117,67 @@ if (ctx) {
   document.addEventListener('visibilitychange',()=>{if(document.hidden){cancelAnimationFrame(frame);frame=0;}else start();});
   resize(); draw(); start();
 }
+
+
+// Progressive enhancement: no hidden content until observers are ready.
+(() => {
+  const motion = matchMedia('(prefers-reduced-motion: reduce)');
+  const paint = [...document.querySelectorAll('.underlined, #about-title .muted, .creative-accent')];
+  paint.forEach(el => el.classList.add('paint-word'));
+  const reveal = [...document.querySelectorAll('.section-top, .section-heading, .featured, .web-project, .github-line, #about-title, .about-copy > p, .creative-heading, .creative-card, .contact .eyebrow, .contact-grid > *')];
+  const timeline = document.querySelector('.timeline');
+  const steps = timeline ? [...timeline.children] : [];
+  let observer, frame = 0;
+
+  function updatePath() {
+    frame = 0;
+    updateProgress();
+    if (!timeline || !steps.length) return;
+    const icons = steps.map(step => step.querySelector('.timeline-icon').getBoundingClientRect());
+    const bounds = timeline.getBoundingClientRect();
+    const start = icons[0].top + icons[0].height / 2;
+    const end = icons[icons.length - 1].top + icons[icons.length - 1].height / 2;
+    const readingLine = innerHeight * .76;
+    const progress = motion.matches ? 1 : Math.max(0, Math.min(1, (readingLine - start) / Math.max(1, end - start)));
+    timeline.style.setProperty('--path-top', `${start - bounds.top}px`);
+    timeline.style.setProperty('--path-height', `${end - start}px`);
+    timeline.style.setProperty('--path-progress', progress.toFixed(4));
+    steps.forEach((step, i) => step.classList.toggle('is-reached', motion.matches || icons[i].top + icons[i].height / 2 <= readingLine));
+  }
+  function schedulePath() { if (!frame) frame = requestAnimationFrame(updatePath); }
+  function configure() {
+    observer?.disconnect();
+    document.documentElement.classList.remove('motion-ready');
+    if (motion.matches || !('IntersectionObserver' in window)) {
+      reveal.forEach(el => el.classList.add('is-revealed'));
+      paint.forEach(el => el.classList.add('is-painted'));
+      schedulePath();
+      return;
+    }
+    observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add(entry.target.classList.contains('paint-word') ? 'is-painted' : 'is-revealed');
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0, rootMargin: '0px 0px -7% 0px' });
+    reveal.forEach(el => {
+      el.classList.add('scroll-reveal');
+      el.style.setProperty('--reveal-delay', el.matches('.web-project:nth-child(2), .creative-card:nth-child(2)') ? '90ms' : '0ms');
+      // Keep content above the initial viewport visible for direct section links.
+      if (el.getBoundingClientRect().bottom < 0) el.classList.add('is-revealed');
+      observer.observe(el);
+    });
+    paint.forEach(el => observer.observe(el));
+    document.documentElement.classList.add('motion-ready');
+    schedulePath();
+  }
+  document.addEventListener('focusin', e => e.target.closest('.scroll-reveal')?.classList.add('is-revealed'));
+  window.addEventListener('scroll', schedulePath, { passive: true });
+  window.addEventListener('resize', schedulePath);
+  window.addEventListener('load', schedulePath, { once: true });
+  document.fonts?.ready.then(schedulePath);
+  filterButtons.forEach(button => button.addEventListener('click', schedulePath));
+  motion.addEventListener('change', configure);
+  configure();
+})();
